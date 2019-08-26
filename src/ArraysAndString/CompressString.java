@@ -20,29 +20,29 @@ public class CompressString {
 	
 	public static void compressString() {
 		
-		String s = "aabcccccaaa";
+		String str = "aabcccccaaa";
 
 		StringBuilder sb = new StringBuilder();
 		
-		char currentChar = s.charAt(0);
+		char previousChar = str.charAt(0);
 		int currentCharCount = 1;
+		int lastIndex = str.length() - 1;
 		
-		for(int i = 1; i < s.length(); i++) {
+		for(int i = 1; i <= lastIndex; i++) {
+			char currentChar = str.charAt(i);
 			
-			if(currentChar == s.charAt(i)) {
+			if(previousChar == currentChar) {
 				currentCharCount++;
 				
-				if(i == s.length() - 1) {
-					sb.append(currentChar);
-					sb.append(currentCharCount);
+				if(i == lastIndex) {
+					appendCompressedString(sb, previousChar, currentCharCount);
 				}
 				
 			}else {
 
-				sb.append(currentChar);
-				sb.append(currentCharCount);
+				appendCompressedString(sb, previousChar, currentCharCount);
 				
-				currentChar = s.charAt(i);
+				previousChar = str.charAt(i);
 				currentCharCount = 1;
 			}
 			
@@ -51,6 +51,10 @@ public class CompressString {
 		
 		System.out.println(sb);
 		
+	}
+	
+	private static void appendCompressedString(StringBuilder sb, char previousChar, int count) {
+		sb.append(previousChar).append(count);
 	}
 
 }

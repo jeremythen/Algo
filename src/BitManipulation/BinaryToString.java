@@ -4,9 +4,7 @@ public class BinaryToString {
 
 	public static void main(String[] args) {
 		
-		double d = 0.1;
-
-		int n = 2;
+		double d = .55;
 		
 		String s = doubleBinaryToString(d);
 		
